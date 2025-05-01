@@ -140,13 +140,13 @@ As rotas de start e end são rotas que irão realizar a ação com base na data 
 
 Para rodar esse projeto, temos que instalar outros dois projetos, sendo eles:
 - ElasticSearch
-- RevenueAPI
+- RevenueAPI (https://github.com/KauanValle/flask_revenue_api.git)
 
 O tutorial de instalação de ambos os projetos estão no README
 
 Primeiro passo iremos clonar esse projeto
 ```bash
-git clone
+git clone https://github.com/KauanValle/rent_vehicle_api.git
 ```
 
 Logo depois iremos subir o docker do projeto
