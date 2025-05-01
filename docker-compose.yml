@@ -1,0 +1,63 @@
+version: '3.8'
+
+services:
+    app:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        container_name: rent_vehicle_app
+        volumes:
+            - .:/var/www/html
+        ports:
+            - 9000:9000
+        networks:
+            - laravel
+            - external_shared_network
+
+    mysql:
+        image: mysql:8.0
+        container_name: rent_vehicle_mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: rent_vehicle
+            MYSQL_USER: rent
+            MYSQL_PASSWORD: rent
+        ports:
+            - 3306:3306
+        volumes:
+            - mysql_data:/var/lib/mysql
+        networks:
+            - laravel
+            - external_shared_network
+
+    nginx:
+        image: nginx:alpine
+        container_name: rent_vehicle_nginx
+        ports:
+            - 80:80
+        volumes:
+            - .:/var/www/html
+            - ./docker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+        depends_on:
+            - app
+        networks:
+            - laravel
+            - external_shared_network
+
+    redis:
+        image: redis:alpine
+        container_name: rent_vehicle_redis
+        ports:
+            - '6382:6379'
+        networks:
+            - laravel
+            - external_shared_network
+
+volumes:
+    mysql_data:
+
+networks:
+    laravel:
+    external_shared_network:
+        external: true
+
