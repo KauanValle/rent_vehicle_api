@@ -11,8 +11,6 @@ Esta API fornece recursos completos para o gerenciamento de uma frota de veícul
 - [Clientes](#clientes)
 - [Aluguéis](#aluguéis)
 - [Instalação](#instalação)
-- [Execução](#execução)
-- [Licença](#licença)
 
 ---
 
