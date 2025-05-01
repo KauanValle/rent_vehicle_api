@@ -164,6 +164,7 @@ Agora vamos executar a instalação das dependencias
 composer install
 php artisan key:generate
 php artisan jwt:secret
+php artisan migrate
 ```
 
 E logo depois de instalar as dependencias iremos sair do terminal

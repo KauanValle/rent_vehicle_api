@@ -7,6 +7,7 @@ use App\Enums\AuthEnum;
 use App\Http\CacheServices\CacheAuthService;
 use App\Models\User;
 use Exception;
+use Illuminate\Support\Facades\Auth;
 
 class AuthRepository extends Repository
 {
@@ -22,6 +23,9 @@ class AuthRepository extends Repository
 
     public function logout()
     {
+        /** @var User $user */
+        $user = Auth::user();
+        $this->cache->forget($user->email);
         auth('api')->logout();
     }
 
