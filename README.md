@@ -139,7 +139,7 @@ As rotas de start e end são rotas que irão realizar a ação com base na data 
 ## ⚙️ Instalação
 
 Para rodar esse projeto, temos que instalar outros dois projetos, sendo eles:
-- ElasticSearch
+- ElasticSearch (https://github.com/KauanValle/elastic-search.git)
 - RevenueAPI (https://github.com/KauanValle/flask_revenue_api.git)
 
 O tutorial de instalação de ambos os projetos estão no README
