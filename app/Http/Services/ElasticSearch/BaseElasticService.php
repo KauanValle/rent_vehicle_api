@@ -36,7 +36,7 @@ abstract class BaseElasticService
 
             return (array) $data->asObject()->_source;
         }catch (\Exception $e){
-            throw new \Exception(RentalEnum::RENTAL_NOT_FOUND_MESSAGE, 404);
+            throw new \Exception('Not found', 404);
         }
     }
 

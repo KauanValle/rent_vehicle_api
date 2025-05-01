@@ -23,7 +23,7 @@ abstract class Repository
 
     public function findById($id)
     {
-        $entity = $this->getEntity($id);
+        $entity = $this->findOrFail($id);
         return $entity;
     }
 
@@ -36,7 +36,7 @@ abstract class Repository
 
     public function update($id, array $data)
     {
-        $entity = $this->getEntity($id);
+        $entity = $this->findOrFail($id);
         $entity->update($data);
 
         return $entity;
@@ -44,20 +44,9 @@ abstract class Repository
 
     public function delete($id)
     {
-        $entity = $this->getEntity($id);
+        $entity = $this->findOrFail($id);
         $entity->delete();
         $this->cacheService->forget($id);
-
-        return $entity;
-    }
-
-    protected function getEntity($id)
-    {
-        $entity = $this->cacheService->get($id);
-        if(!$entity){
-            $entity = $this->findOrFail($id);
-            $this->cacheService->put($id, $entity);
-        }
 
         return $entity;
     }
