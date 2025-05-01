@@ -2,14 +2,13 @@
 
 namespace App\Exceptions;
 
-use Illuminate\Auth\AuthenticationException;
+use Elastic\Elasticsearch\Exception\ClientResponseException;
 use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 use Throwable;
 use Tymon\JWTAuth\Exceptions\JWTException;
-use Tymon\JWTAuth\Exceptions\TokenInvalidException;
 
 class Handler extends ExceptionHandler
 {
@@ -39,6 +38,13 @@ class Handler extends ExceptionHandler
             return response()->json([
                 'status' => 'error',
                 'error' => 'Invalid token, please log in again.'
+            ], 401);
+        }
+
+        if($exception instanceof ClientResponseException ){
+            return response()->json([
+                'status' => 'error',
+                'error' => 'Invalid index, contact adminstrator.'
             ], 401);
         }
 
